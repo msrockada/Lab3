@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>What to do</title>
+    <style>
+        p{
+            background-color: #1c1e21;
+            height: 50px;
+            width: auto;
+            color: #a9a9a9;
+            font-family: Helvetica;
+            padding-left: 50px;
+            padding-top: 20px;
+            font-size: 25px;
+
+        }
+        ul{
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        ul li {
+            position: relative;
+            top: 100px;
+            padding: 12px 8px 12px 40px;
+            background: #ffffff;
+            border: #eeeeee 1px solid;
+            font-size: 18px;
+            transition: 0.2s;
+            width: 1000px;
+            padding: 20px;
+        }
+
+        ul li.checked {
+            background: #83c6e3;
+            color: #fff;
+            text-decoration: line-through;
+        }
+
+        img{
+            position: absolute;
+            left: 990px;
+        }
+        div{
+            font-family: Helvetica;
+            position: relative;
+            left:400px;
+        }
+        #input{
+            position: absolute;
+            left: 150px;
+            border-radius: 3px;
+            border-color: #d2d2d2;
+            width: 550px;
+            height: 35px;
+            padding-left: 20px;
+            font-size: 16px;
+        }
+        #click{
+            position: relative;
+            left: 750px;
+            height: 35px;
+            background-color: #0095F6;
+            border-color: #0095F6;
+            border-radius: 3px;
+            color: #ffffff;
+            width: 50px;
+
+        }
+        h1{
+            font-size: 40px;
+            position: relative;
+            top: 20px;
+        }
+        form{
+            position: relative;
+            top: 30px;
+            left: 20px;
+        }
+    </style>
+</head>
+<body>
+
+
+<p>ToDo List</p>
+<div>
+<h1>ToDo List</h1>
+
+<form>
+    <input type="text" id = "input" placeholder="New Task">
+    <button id="click" type="button" onclick = "NewElement()">Add</button>
+
+</form>
+
+<ul id="myList">
+    <li>Create Webpage </li>
+    <li>3D Model a room</li>
+    <li>Finish Drawing</li>
+    <li>Read a book</li>
+</ul>
+</div>
+
+<script>
+
+    var myNodelist = document.getElementsByTagName("LI");
+    var i;
+    for (i = 0; i < myNodelist.length; i++) {
+        let span = document.createElement("SPAN");
+        let txt = document.createElement("IMG");
+        txt.setAttribute("src","https://images.vexels.com/media/users/3/132505/isolated/preview/fec64ffe207b10917bf22370bf606c11-flat-trash-can-icon-by-vexels.png")
+        txt.setAttribute("height","20")
+        span.className = "close";
+        span.appendChild(txt);
+        myNodelist[i].appendChild(span);
+    }
+
+
+    var close = document.getElementsByClassName("close");
+    var i;
+    for (i = 0; i < close.length; i++) {
+        close[i].onclick = function() {
+            var div = this.parentElement;
+            div.style.display = "none";
+        }
+    }
+
+    var list = document.querySelector('ul');
+    list.addEventListener('click', function(ev) {
+        if (ev.target.tagName === 'LI') {
+            ev.target.classList.toggle('checked');
+        }
+    }, false);
+
+    function NewElement(){
+
+        let node = document.createElement("LI");
+        let inputValue = document.getElementById("input").value;
+        let textnode = document.createTextNode(inputValue);
+        node.appendChild(textnode);
+        if (inputValue === '') {
+            alert("You must write something!");
+        } else {
+            document.getElementById("myList").appendChild(node);
+        }
+        document.getElementById("input").value = "";
+
+        let span = document.createElement("SPAN");
+        let txt = document.createElement("IMG");
+        txt.setAttribute("src","https://images.vexels.com/media/users/3/132505/isolated/preview/fec64ffe207b10917bf22370bf606c11-flat-trash-can-icon-by-vexels.png")
+        txt.setAttribute("height","20")
+        span.className = "close";
+        span.appendChild(txt);
+        node.appendChild(span);
+
+        for (i = 0; i < close.length; i++) {
+            close[i].onclick = function() {
+                let div = this.parentElement;
+                div.style.display = "none";
+            }
+        }
+
+
+
+    }
+
+
+
+</script>
+
+</body>
+</html>

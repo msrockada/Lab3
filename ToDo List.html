@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>What to do</title>
+    <style>
+        ul{
+            margin: 0;
+            padding: 0;
+
+        }
+
+        ul li {
+            position: relative;
+            padding: 12px 8px 12px 40px;
+            background: #eee;
+            font-size: 18px;
+            transition: 0.2s;}
+
+
+
+
+        img{
+        }
+
+        input{}
+
+    </style>
+</head>
+<body>
+
+
+<p>ToDo List</p>
+
+<h1>ToDo List</h1>
+
+<form>
+    <input type="text" id = "input" placeholder="New Task">
+    <button type="button" onclick = "NewElement()">Add</button>
+
+</form>
+
+<ul id="myList">
+    <li>Create Webpage </li>
+    <li>3D Model a room</li>
+    <li>Finish Drawing</li>
+    <li>Read a book</li>
+</ul>
+
+<script>
+
+    var myNodelist = document.getElementsByTagName("LI");
+    var i;
+    for (i = 0; i < myNodelist.length; i++) {
+        let span = document.createElement("SPAN");
+        let txt = document.createElement("IMG");
+        txt.setAttribute("src","https://images.vexels.com/media/users/3/132505/isolated/preview/fec64ffe207b10917bf22370bf606c11-flat-trash-can-icon-by-vexels.png")
+        txt.setAttribute("height","20")
+        span.className = "close";
+        span.appendChild(txt);
+        myNodelist[i].appendChild(span);
+    }
+
+
+    var close = document.getElementsByClassName("close");
+    var i;
+    for (i = 0; i < close.length; i++) {
+        close[i].onclick = function() {
+            var div = this.parentElement;
+            div.style.display = "none";
+        }
+    }
+
+    var myNodelist = document.getElementsByTagName("LI");
+    var i;
+    for (i = 0; i < myNodelist.length; i++) {
+        let span = document.createElement("SPAN");
+        let x = document.createElement("INPUT");
+        x.setAttribute("type", "checkbox");
+        span.className = "checked";
+        span.appendChild(x);
+        myNodelist[i].appendChild(span);
+    }
+
+
+    document.getElementById('LI').appendChild(x);
+
+    function NewElement(){
+        let node = document.createElement("LI");
+        let inputValue = document.getElementById("input").value;
+        let textnode = document.createTextNode(inputValue);
+        node.appendChild(textnode);
+        if (inputValue === '') {
+            alert("You must write something!");
+        } else {
+            document.getElementById("myList").appendChild(node);
+        }
+        document.getElementById("input").value = "";
+
+        let span = document.createElement("SPAN");
+        let txt = document.createElement("IMG");
+        txt.setAttribute("src","https://images.vexels.com/media/users/3/132505/isolated/preview/fec64ffe207b10917bf22370bf606c11-flat-trash-can-icon-by-vexels.png")
+        txt.setAttribute("height","20")
+        span.className = "close";
+        span.appendChild(txt);
+        node.appendChild(span);
+
+        for (i = 0; i < close.length; i++) {
+            close[i].onclick = function() {
+                let div = this.parentElement;
+                div.style.display = "none";
+            }
+        }
+
+
+
+    }
+
+
+
+</script>
+
+</body>
+</html>
